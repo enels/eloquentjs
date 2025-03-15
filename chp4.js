@@ -35,3 +35,45 @@ function rangeWithStep(start, end, step=1) {
 
     return result;
 }
+
+// reverse array
+function reverseArray(arr) {
+
+    "use strict";
+    let newArr = [];
+
+    for (let i = arr.length-1; i >= 0; i--) {
+        newArr.push(arr[i]);
+    }
+
+    return newArr;
+}
+
+// reverse array in-place
+function reverseArrayInPlace(arr) {
+
+    "use strict";
+    let tmp, isEven;
+
+    // check if the lenght is even
+    if (arrLength % 2 == 0)
+        isEven = true;
+
+    // get the mid index
+    let midIndex = arr.length / 2;
+
+    // get last index
+    let lastIndex = arrLength - 1;
+
+    for (let i = 0; i <= midIndex; i++) {
+
+        // if at the middle of the array
+        if (isEven && i == midIndex)
+            ;
+        else { // perform swapping
+            tmp = arr[i];
+            arr[i] = arr[lastIndex - i];
+            arr[lastIndex - i] = tmp;
+        }
+    }
+}
