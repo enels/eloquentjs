@@ -1,4 +1,4 @@
-function beanCount(str) {
+function countB(str) {
     "use strict";
 
     let bCount = 0;
