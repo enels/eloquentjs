@@ -122,3 +122,16 @@ function listToArray(list) {
 
     return arr;
 }
+
+// helper functions
+function prepend(element, list) {
+    "use strict";
+
+    // create the new list
+    let newList = new ListNode(element);
+
+    // add the new list to the front of the input list
+    newList.rest = list;
+    
+    return newList;
+}
