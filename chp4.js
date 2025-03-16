@@ -174,3 +174,9 @@ function nthRecursive (list, currPos, pos) {
 
     nthRecursive(listHead.rest, currPos - 1, defaultPos);
 }
+
+// compares the equality of two objects in a deep way
+function deepEqual(obj1, obj2) {
+    "use strict";
+
+}
