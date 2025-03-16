@@ -132,6 +132,28 @@ function prepend(element, list) {
 
     // add the new list to the front of the input list
     newList.rest = list;
-    
+
     return newList;
+}
+
+// function nth
+/* takes a list and a number and returns the elment at the nth position of the list */
+function nth(list, pos){
+    "use strict";
+
+    let listHead = list;
+    let current_position = 0;
+
+    while (listHead.rest !== null && current_position !== pos) {
+        listHead = listHead.rest;
+        current_position++; // move to next position
+    }
+
+    // position not found
+    if (current_position > pos)
+        return undefined;
+
+    //position found in list
+    if (current_position === pos)
+        return listHead.value;
 }
