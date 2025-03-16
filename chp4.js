@@ -101,3 +101,24 @@ function arrayToList(arr) {
 
     return list;
 }
+
+// function listToArray
+function listToArray(list) {
+    "use strict";
+
+    // set the head of the list
+    let listHead = list;
+
+    // new array to store the list values
+    let arr = new Array();
+
+    while (listHead.rest != null) {
+        arr.push(listHead.value);
+        listHead = listHead.rest;
+    }
+
+    // pust the last value into array
+    arr.push(listHead.value);
+
+    return arr;
+}
