@@ -77,3 +77,27 @@ function reverseArrayInPlace(arr) {
         }
     }
 }
+
+
+// arrayToList problem
+class ListNode {
+    constructor(data) {
+        this.value = data;
+        this.rest = null;
+    }
+}
+
+// function arrayToList
+function arrayToList(arr) {
+    "use strict";
+
+    let list = new ListNode(arr[0]);
+    let listHead = list;
+
+    for (let i=1; i < arr.length; i++) {
+        listHead.next = new ListNode(arr[i]);
+        listHead = listHead.rest;
+    }
+
+    return list;
+}
