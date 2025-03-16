@@ -157,3 +157,20 @@ function nth(list, pos){
     if (current_position === pos)
         return listHead.value;
 }
+
+function nthRecursive (list, currPos, pos) {
+    "use strict";
+
+    let listHead = list;
+
+    let defaultPos = pos;
+
+    if (listHead.rest === null) {
+        return undefined;
+    }
+    else if (defaultPos === currPos) {
+        return listHead.value;
+    }
+
+    nthRecursive(listHead.rest, currPos - 1, defaultPos);
+}
