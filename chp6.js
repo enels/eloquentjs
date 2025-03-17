@@ -85,3 +85,14 @@ class Group {
 }
 
 /* @testing */
+// let myObj = new Group();
+
+// myObj.add(5);
+// myObj.add(7);
+// myObj.add(8);
+// myObj.add(9);
+// myObj.add(5);
+// console.log(myObj);
+// console.log(myObj.has(5));
+// myObj.delete(7);
+// console.log(myObj);
