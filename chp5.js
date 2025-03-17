@@ -16,3 +16,19 @@ function every(predicate, arr) {
 
     return true;
 }
+
+function every_v2(predicate, arr) {
+
+    let res=[];
+
+    arr.forEach(e => {res.push([e].some(predicate))});
+
+    for (e of res)
+        if (!e)
+            return false;
+
+    // if (arr.some(predicate) == false)
+    //     return false;
+
+    return true;
+}
