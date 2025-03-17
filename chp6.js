@@ -96,3 +96,6 @@ class Group {
 // console.log(myObj.has(5));
 // myObj.delete(7);
 // console.log(myObj);
+
+// let array = [8, 12, 13, 10, 1, 5];
+// console.log(Group.from(array));
