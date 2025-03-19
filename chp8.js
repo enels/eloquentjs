@@ -46,4 +46,28 @@ function transfer(from, amount) {
     }
 }
 
-console.log(transfer("z", 300));
+const box = {
+    locked: true,
+    unlock() { this.locked = false; },
+    lock() { this.locked = true; },
+    _content: [],
+    get content() {
+        if (this.locked) throw new Error("Locked!");
+        return this._content;
+    }
+}
+
+function withBoxUnlocked(func) {
+    box.locked[1]; // unlocks the box
+    try {
+        func();
+    } finally {
+        box.locked[2];
+    }
+}
+
+function func() {
+    console.log("func running: MDN Reference");
+}
+
+withBoxUnlocked(func);
