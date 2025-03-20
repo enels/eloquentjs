@@ -29,7 +29,11 @@ function parseINI(string) {
 }
 
 /* EXERCISES */
-let s = "proportion";
-//console.log(/ca(r|t)/.test(s));
+let s = "hstu";
+console.log(/ca(r|t)/.test(s));
 console.log(/p(o|r)op/.test(s));
-
+console.log(/ferr((et)|y|(ari))/.test(s));
+console.log(/.+(ious)$/.test(s));
+console.log(/\s[\.,:;]/.test(s));
+console.log(/\w{7}/.test(s));
+console.log(/\b[a-df-zA-DF-Z]+\b/.test(s));
