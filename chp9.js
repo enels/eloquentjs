@@ -29,7 +29,7 @@ function parseINI(string) {
 }
 
 /* EXERCISES */
-let s = "enomauwaifo4real@gmail.com";
+let s = "He said, 'this isn't it at all'";
 
 let w = "https://google.com";
 
@@ -49,3 +49,5 @@ let w = "https://google.com";
 
 // website validation
 //console.log(/^(https:\/\/)(www.)?\w+\.\w{2,3}$/.test(w));
+
+console.log(s.replace(/\'/g, ""));
