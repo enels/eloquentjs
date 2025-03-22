@@ -77,9 +77,17 @@
             for (let textData of data) {
                 // create table row
                 const tr = document.createElement("tr");
+                td = document.createElement("td");
+
                 number++;
                 // create data for the numbering
-                tr.appendChild(document.createElement("td").appendChild(document.createTextNode(number)));
+                td.appendChild(document.createTextNode(number));
+
+                // style it to be right align since it's a number
+                td.style.textAlign = "right";
+
+                // apend data to table row
+                tr.appendChild(td);
 
                 for (let i = 0; i < numOfColumns; i++) {
 
@@ -87,8 +95,16 @@
                     td = document.createElement("td");
 
                     td.append(document.createTextNode(textData[columns[i]]));
+                    
+                    // check if data type is a digit
+                    if ( typeof textData[columns[i]] === "number") {
+                        td.style.textAlign = "right";
+                    }
+                    
                     // append the data to the row
                     tr.appendChild(td);
+
+                    
                 }
 
                 fragment.appendChild(tr);
