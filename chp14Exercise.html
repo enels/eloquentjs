@@ -39,7 +39,7 @@
                 let th = document.createElement("th");
 
                 // attached the content from the data
-                th.textContent = columns[i];
+                th.textContent = "columns[i];"
 
                 // attach it to the table row
                 tableRow.appendChild(th);
@@ -48,7 +48,31 @@
 
 
         }
-        
+
+        function generateTableRows(data) {
+
+            const columns = Object.keys(data[0]);
+            const numOfColumns = columns.length;
+
+            let td;
+            for (let textData of data) {
+                // create table row
+                const tr = document.createElement("tr");
+
+                for (let i = 0; i < numOfColumns; i++) {
+
+                    // create the next row
+                    td = document.createElement("td");
+
+                    td.append(document.createTextNode(textData[columns[i]]));
+                    // append the data to the row
+                    tr.appendChild(td);
+                }
+
+                fragment.appendChild(tr);
+            }
+
+        }
         /**
          * 
          * @param: {array of objects} data
@@ -61,16 +85,15 @@
             // form the table head
             formTableHead(data)
 
-            // append the table row data (columns) to the table head
-            tableEle.append(tableRow);
-
-            // append the table head to the table
-            mountains.appendChild(tableEle);
-
             // generate all the rows
             generateTableRows(data);
 
-            mountains.appendChild(fragment);
+            // append the table row data (columns) to the table head
+            tableEle.append(tableRow);
+            tableEle.appendChild(fragment);
+
+            // append the table head to the table
+            mountains.appendChild(tableEle);
 
         }
 
