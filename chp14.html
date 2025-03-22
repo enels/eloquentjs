@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en-US">
+    <head>
+        <title>Chapter 14 - Eloquent JavaScript</title>
+    </head>
+    <body>
+        <!--<p>My ostrich Gertrude:</p>
+        <p><img id="gertrude" src="img/ostrich.png"></p>-->
+
+        <!--Changing Document-->
+        <p>One</p>
+        <p>Two</p>
+        <p>Three</p>
+
+        <p>The <img src="img/cat.png" alt="Cat"> in the <img src="img/hat.png" alt="Hat"></p>
+
+        <p><button>Replace</button></p>
+
+        <script>
+            "use strict";
+
+            // let ostrich = document.getElementById("gertrude");
+            // console.log(ostrich.src);
+            // ostrich.setAttribute("src", "img/ostrich1.png");
+            
+            // replacing nodes
+            let paragraphs = document.body.getElementsByTagName("p");
+            document.body.insertBefore(paragraphs[2], paragraphs[0]);
+
+            // creating nodes
+            function replaceImages() {
+                let images = document.querySelectorAll("img");
+                for (let i = images.length - 1; i >= 0; i--) {
+                    let image = images[i];
+                    if (image.alt) {
+                        let text = document.createTextNode(image.alt);
+                        image.parentNode.replaceChild(text, image);
+                    }
+                }
+            }
+
+            let fragment = document.createDocumentFragment();
+            function replaceImagesII() {
+                let images = document.querySelectorAll("img");
+                
+                for (let i = 0; i < images.length; i++) {
+                    let image = images[i];
+                    if (image.alt) {
+                        let text = document.createTextNode(image.alt);
+                        image.replaceWith(text, image);
+                    }
+                    fragment.appendChild(image);
+                    image.remove();
+                }
+            }
+
+            document.querySelector("button").addEventListener("click", replaceImagesII);
+            let para = document.querySelector("p");
+
+            // delete children first
+            para.append(fragment);
+        
+
+        </script>
+    </body>
+</html>
