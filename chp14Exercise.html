@@ -36,11 +36,16 @@
 
             // first get the columns and the number of columns(keys) in the data
             const columns = Object.keys(data[0]);
-            const numOfColumns = columns.length;
+            const numOfColumns = columns.length + 1; // add one for the enumieration column
 
+            // create table head element for the enumeration column
+            let th = document.createElement("th");
+            th.textContent = "No.";
+            tableRow.append(th);
+            
             // form the columns
             for (let i = 0; i < numOfColumns; i++) {
-                
+                    
                 // create table head element
                 let th = document.createElement("th");
 
