@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <title>Table formation from objects</title>
+    </head>
+
+<body>
+    <p id="mountains"></p>
+
+    <script>
+        "use strict";
+
+        /**
+         * 
+         * @param: {array of objects} data
+         * @return: {DOM table} Object
+         * 
+         * 
+         */
+        function generateTable(data) {
+
+            // create the table tag and table row
+            let tableEle = document.createElement("table");
+            let tableRow = document.createElement("tr");
+
+            // craete the the column (table head) and attach the text contents
+            // "name", "height", and "place" to it
+            
+            // first get the columns and the number of columns(keys) in the data
+            const columns = Object.keys(data[0]);
+            const numOfColumns = columns.length;
+
+            // form the columns
+        }
+    </script>
+</body>
+</html>
