@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <title>Get Decendants of Tag Name</title>
+    </head>
+
+<body>
+    <h2>Testing</h2>
+    <p id="mainPara">
+        <p>Child Paragraph</p>
+        <p>Child Paragraph</p>
+
+        <img src="cat.jpg", alt="cat image" />
+
+    </p>
+
+    <script>
+
+        function getElementsByTN (node, tagName) {
+
+            //const tagName = document.nodeName;
+            const elements = []; // stores all the descendants elements
+            
+            elements.push(tagName);
+
+            for(let child = node.firstChild; child != null; child = child.nextSibling) {
+
+                // new node
+                if (child.nodeType === 1) {
+                    
+                    elements.push(child.nodeName.toLowerCase());
+                }
+            }
+
+            console.log(elements);
+        }
+
+        //console.log(document.getRootNode());
+        getElementsByTN(document.getRootNode(), "<p>");
+    </script>
+</body>
+</html>
