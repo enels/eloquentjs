@@ -10,28 +10,71 @@
     <script>
         "use strict";
 
+        // get the element to append the table
+        let mountains = document.querySelector("#mountains");
+
+        // create the table tag and table row
+        let tableEle = document.createElement("table");
+        let tableRow = document.createElement("tr");
+
+        // row fragments
+        let fragment = document.createDocumentFragment();
+
         /**
          * 
-         * @param: {array of objects} data
-         * @return: {DOM table} Object
-         * 
+         * @param: {array of Objects} data
+         * @return: null
          * 
          */
-        function generateTable(data) {
+        function formTableHead(data) {
 
-            // create the table tag and table row
-            let tableEle = document.createElement("table");
-            let tableRow = document.createElement("tr");
-
-            // craete the the column (table head) and attach the text contents
-            // "name", "height", and "place" to it
-            
             // first get the columns and the number of columns(keys) in the data
             const columns = Object.keys(data[0]);
             const numOfColumns = columns.length;
 
             // form the columns
+            for (let i = 0; i < numOfColumns; i++) {
+                
+                // create table head element
+                let th = document.createElement("th");
+
+                // attached the content from the data
+                th.textContent = columns[i];
+
+                // attach it to the table row
+                tableRow.appendChild(th);
+
+            }
+
+
         }
+        
+        /**
+         * 
+         * @param: {array of objects} data
+         * @return: null
+         * 
+         */
+        function generateTable(data) {
+
+            
+            // form the table head
+            formTableHead(data)
+
+            // append the table row data (columns) to the table head
+            tableEle.append(tableRow);
+
+            // append the table head to the table
+            mountains.appendChild(tableEle);
+
+            // generate all the rows
+            generateTableRows(data);
+
+            mountains.appendChild(fragment);
+
+        }
+
+        generateTable([{name: "Kilimajaro", height: 5895, place: "Tanzania"}, {name: "Eli", height: 2332, place: "Egypt"}])
     </script>
 </body>
 </html>
