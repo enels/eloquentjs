@@ -73,9 +73,13 @@
             const numOfColumns = columns.length;
 
             let td;
+            let number = 0;
             for (let textData of data) {
                 // create table row
                 const tr = document.createElement("tr");
+                number++;
+                // create data for the numbering
+                tr.appendChild(document.createElement("td").appendChild(document.createTextNode(number)));
 
                 for (let i = 0; i < numOfColumns; i++) {
 
