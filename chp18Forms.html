@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en-US">
+    <head>
+        <title>Forms</title>
+    </head>
+
+<body>
+    <form>
+        <input type="text">
+        <textarea></textarea>
+        <input type="checkbox" id="purple"> Make this page purple
+
+        Color:
+        <label>
+        <input type="radio" name="color" value="orange"> Orange
+        </label>
+        <label>
+        <input type="radio" name="color" value="lightgreen"> Green
+        </label>
+        <label>
+        <input type="radio" name="color" value="lightblue"> Blue
+
+        <select multiple>
+            <option value="1">0001</option>
+            <option value="2">0010</option>
+            <option value="4">0100</option>
+            <option value="8">1000</option>
+        </select> = <span id="output">0</span>
+        
+        <input id="file" type="file">
+        <input id="multi-files" type="file">
+
+        <button btn="1">I'm all right</button>
+        <button disabled>I'm out</button>
+    </form>
+        
+    <script>
+        document.querySelector("input").focus();
+        console.log(`${document.activeElement.tagName} is currently active`);
+        document.querySelector("input").blur();
+        console.log(`${document.activeElement.tagName} is currently active`);
+
+        // TEXT
+        let textarea = document.querySelector("textarea");
+        textarea.addEventListener("keydown", event => {
+            // The key code for F12 happens to be 113
+            if (event.keyCode == 113) {
+                replaceSelection(textarea, "Khasekhemwy");
+                event.preventDefault();
+            }
+        });
+
+        function replaceSelection(field, word) {
+            let from = field.selectionStart, to = field.selectionEnd;
+            field.value = field.value.slice(0, from) + word + field.value.slice(to);
+
+            // put the cursor after the word
+            field.selectionStart = from + word.length;
+            field.selectionEnd = from + word.length;
+        }
+
+        // checkboxes and radio buttons
+        // checkboxes
+        let checkbox = document.querySelector("#purple");
+        checkbox.addEventListener("change", () => {
+            document.body.style.background = checkbox.checked ? "mediumpurple" : "";
+        });
+
+        // radio buttons
+        let buttons = document.querySelectorAll("[name=color]");
+        for (let button of buttons) {
+            button.addEventListener("change", () => {
+                document.body.style.background = button.value;
+            });
+        }
+
+        // select fields
+        let select = document.querySelector("select");
+        let output = document.querySelector("#output");
+        select.addEventListener("change", () => {
+            let number = 0;
+            for (let option of Array.from(select.options)) {
+                if (option.selected) {
+                    number += option.value;
+                }
+            }
+
+        output.appendChild(document.createTextNode(number));
+        });
+
+        // file upload(single)
+        let fileInput = document.querySelector("#file");
+        fileInput.addEventListener("change", () => {
+            if (fileInput.files.length > 0) {
+                let file = fileInput.files[0];
+                if (file.type)
+                    console.log(`It has type, ${file.type}`);
+
+            }
+        });
+
+        // file upload(multiple)
+        let fileInput2 = document.querySelector("#multi-files");
+        fileInput2.addEventListener("change", () => {
+            for (let file of Array.from(fileInput2)) {
+                let reader = new FileReader();
+                reader.addEventListener("load", () => {
+                    console.log("File", file.name, "starts with", reader.result.slice(0, 20));
+                });
+                reader.readAsText(file);
+            }
+        });
+
+    </script>
+</body>
+</html>
