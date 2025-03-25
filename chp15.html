@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <title>Handling Events</title>
+    </head>
+
+<body>
+    <p>Click this document to activate the handler.</p>
+
+    <!--<button>Click me</buttn>-->
+
+    <p>A paragraph with a <button>button</button></p>
+    <a href="https://developer.mozilla.org/">MDN</a>
+
+    <form>
+        <label for="email">Email: </label>
+        <input type="text">
+        <p id="err"></p>
+        <button>Submit</button>
+    </form>
+    <script>
+        "use strict";
+
+        let form = document.querySelector("form");
+        let input = document.querySelector("input");
+        let errMsg = document.querySelector("#err");
+
+        form.addEventListener("submit", (event) => {
+            event.preventDefault();
+        });
+
+        let str = "";
+
+        input.addEventListener("keypress", (event) => {
+            let match;
+            if (event.key != "Backspace" || event.key != "Alt" || event.key !=  "Shift" || event.key != "Ctrl") {
+                str += `${event.key}`;
+                console.log("match");
+            }
+            if (match = str.match(/^[0-9a-z-]+@\w+\.\w{2,3}$/)) {
+                errMsg.textContent = "";
+                form.addEventListener("submit", (e) => {
+                    e.preventDefault();
+                    str = "";
+                    form.submit();
+                    console.log("form submitted");
+                });
+
+                
+            }
+            else {
+                errMsg.style.color = "red";
+                errMsg.textContent = "Invalid email";
+            }
+        });
+
+        //window.addEventListener("click", () => {console.log("You knocked?");});
+
+        // let button = document.querySelector("button");
+        // button.addEventListener("click", (event) => {
+        //     console.log("Button clicked");
+        //     console.log(Object.getPrototypeOf(event.clientX));
+        // });
+
+        // let button = document.querySelector('button');
+        // button.addEventListener("click", once);
+
+        // function once() {
+        //     console.log('Done');
+        //     button.removeEventListener("click", once);
+        // }
+
+        // Event Objects
+        // let button = document.querySelector("button");
+        // button.addEventListener("mousedown", event => {
+        //     if (event.button == 0) {
+        //         console.log("left button");
+        //     }
+        //     else if (event.button == 1){
+        //         console.log("middle button");
+        //     }
+        //     else if (event.buton == 2) {
+        //         console.log("right button");
+        //     }
+
+        // Event Propagation
+        let para = document.querySelector("p");
+        let button = document.querySelector("button");
+        para.addEventListener("mousedown", () => {
+                console.log("Handler for paragrph.");
+        });
+        button.addEventListener("mousedown", event => {
+            console.log("Handler for button");
+            if (event.button == 2) event.stopPropagation(); // stops event from propation to the root node or parent node
+        });
+
+        let link = document.querySelector("a");
+        link.addEventListener("click", event => {
+            console.log("Nope.");
+            event.preventDefault();
+        });
+
+    </script>
+</body>
+</html>
